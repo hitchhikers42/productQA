@@ -1,0 +1,41 @@
+{
+  "name": "productqa",
+  "version": "1.0.0",
+  "description": "This module will show the product Q&A for BBB. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hitchhikers42/productQA.git"
+  },
+  "keywords": [
+    "product",
+    "Q",
+    "A"
+  ],
+  "author": "Eivin Adlawan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hitchhikers42/productQA/issues"
+  },
+  "homepage": "https://github.com/hitchhikers42/productQA#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "axios": "^0.19.0",
+    "babel-loader": "^8.0.6",
+    "express": "^4.17.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-tooltip": "^3.11.1",
+    "styled-components": "^4.4.1"
+  }
+}
