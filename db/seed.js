@@ -9,6 +9,8 @@
   //Post (outer container)
     //Question and Answers\
 
+  const mongoose = require('mongoose')
+
 const QA = require('./QASchema.js');
 const sampleData = {
   question: 'Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum?',
@@ -16,6 +18,10 @@ const sampleData = {
   name:'Eivin',
   productId: 'BES870XL'
 }
+
+// db.productQA.insertOne(sampleData);
+
+// db.productQA.find( {} )
 
 const insertOne = ({ name, productId, question, answer }, callback) => {
   // create a new record with given data
@@ -28,7 +34,7 @@ const insertOne = ({ name, productId, question, answer }, callback) => {
 }
 
 const fetchAll = (callback) => {
-  QA.find({/* query params */}, {/* query order */} function (err, data) {
+  QA.find({/* query params */}, {/* query order */}, function (err, data) {
     console.log('first')
     err ? callback(err) :
       callback(null, data)
@@ -61,3 +67,5 @@ insertOne(sampleData, (err, result) => {
 })
 
 */
+
+// module.exports = sampleData;
