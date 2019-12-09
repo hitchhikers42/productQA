@@ -9,13 +9,24 @@
   //Post (outer container)
     //Question and Answers\
 
+  const mongoose = require('mongoose')
+
 const QA = require('./QASchema.js');
+
 const sampleData = {
   question: 'Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum?',
   answer: 'A first-century BCE text by Cicero , with words altered, added, and removed to make it nonsensical, improper Latin . Versions of the lorem ipsum text have been used in typesetting at least since the 1960s, when it was popularized by advertisements for Letraset transfer sheets. Lorem ipsum was introduced to the digital world in the mid-1980s when Aldus employed it in graphic and word-processing templates for its desktop publishing program PageMaker',
   name:'Eivin',
-  productId: 'BES870XL'
+  // productId: 'BES870XL'
+  productId: '0'
 }
+
+// db.productQA.insertOne(sampleData);
+
+// db.productQA.find( {} )
+
+
+//for insertOne, refer to: https://flaviocopes.com/node-mongodb/
 
 const insertOne = ({ name, productId, question, answer }, callback) => {
   // create a new record with given data
@@ -28,7 +39,7 @@ const insertOne = ({ name, productId, question, answer }, callback) => {
 }
 
 const fetchAll = (callback) => {
-  QA.find({/* query params */}, {/* query order */} function (err, data) {
+  QA.find({/* query params */}, {/* query order */}, function (err, data) {
     console.log('first')
     err ? callback(err) :
       callback(null, data)
@@ -61,3 +72,7 @@ insertOne(sampleData, (err, result) => {
 })
 
 */
+
+// module.exports = sampleData;
+
+module.exports = seed
