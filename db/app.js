@@ -6,11 +6,11 @@ const collection = db.collection('posts')
 
 //insert data into a collection as a Document
 
-collection.inserOne(sampleData, (err, result) => {
+collection.insertOne(sampleData, (err, result) => {
 
 })
 
-collection.inserMany(sampleData, (err, result) => {
+collection.insertMany(sampleData, (err, result) => {
 
 })
 

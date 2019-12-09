@@ -17,7 +17,8 @@ const sampleData = {
   question: 'Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum?',
   answer: 'A first-century BCE text by Cicero , with words altered, added, and removed to make it nonsensical, improper Latin . Versions of the lorem ipsum text have been used in typesetting at least since the 1960s, when it was popularized by advertisements for Letraset transfer sheets. Lorem ipsum was introduced to the digital world in the mid-1980s when Aldus employed it in graphic and word-processing templates for its desktop publishing program PageMaker',
   name:'Eivin',
-  productId: 'BES870XL'
+  // productId: 'BES870XL'
+  productId: '0'
 }
 
 // db.productQA.insertOne(sampleData);
