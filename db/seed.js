@@ -27,22 +27,25 @@ sampleData = [];
 
 productIds.forEach(id => {
   for(let i = 0; i < random(7); i++) {
-    let q = faker.lorem.sentences(random(4)).slice(0,-1) + '?'
     let data = {
-      posts: [],
-      name: faker.internet.userName(),
+      questions: [],
       productId: id
     }
-//! Savepoint
-    /*
-    obj = { question: faker.lorem.sentences(random(18)), answers: []}
-    data.posts.answers.push(stuff)
-    */
-    // change qa to match schemadata.posts.push
-    for(let j = 0; j < random(4); j++) {
-      data.answers[faker.internet.userName()] = faker.lorem.sentences(random(18))
+
+    let question = {
+      name: faker.internet.userName(),
+      question: faker.lorem.sentences(random(4)).slice(0,-1) + '?',
+      answers: []
     }
 
+    for(let j = 0; j < random(4); j++) {
+      let answer = {
+        username: faker.internet.userName(),
+        answer: faker.lorem.sentences(random(9))
+      }
+      question.answers.push(answer)
+    }
+    data.questions.push(question)
     sampleData.push(data);
   }
 })
