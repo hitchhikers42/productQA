@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
-const mongoUri = 'mongodb://localhost:27017/test';
+const mongoUri = 'mongodb://localhost:27017/qa';
 const db = mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }, (err, client) => {
-  if (err) {
-    console.error(err)
-    return
-  }
-});
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
 module.exports = db;
