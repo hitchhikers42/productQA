@@ -5,58 +5,84 @@ console.log('SEED SCRIPT!!');
 
 
 /* Delete all entries if they exist */
-const deleteAll = () => {
-  QA.deleteMany({}, (err) => {
-    err ? console.error(err) :
-      console.log('Successfully removed all records');
-  });
-}
+
+  const deleteAll = () => {
+    QA.deleteMany({}, (err) => {
+      err ? console.error(err) :
+        console.log('Successfully removed all records');
+    });
+  }
 deleteAll()
 
-const productIds = [
-  'BES870XL',
-  'IVFWCT242DBWH',
-  'TOB-135N'
-]
 
-/* returns a random number between 0 and given 'num' */
-const random = (num) => Math.floor((Math.random() * num) + 1);
 
-/* Holds all of the records created */
-sampleData = [];
 
-productIds.forEach(id => {
-  for(let i = 0; i < random(7); i++) {
-    let data = {
-      questions: [],
-      productId: id
-    }
 
-    let question = {
-      name: faker.internet.userName(),
-      question: faker.lorem.sentences(random(4)).slice(0,-1) + '?',
-      answers: []
-    }
+  // const counter = 0;
 
-    for(let j = 0; j < random(4); j++) {
-      let answer = {
-        username: faker.internet.userName(),
-        answer: faker.lorem.sentences(random(9))
+  // function incrementCount(){
+  //   counter++
+  // }
+
+  // console.log(counter);
+  // incrementCount();
+  // console.log(counter);
+
+
+
+  const productIds = [
+    'BES870XL',
+    'IVFWCT242DBWH',
+    'TOB-135N'
+  ]
+
+  //! Push numbers into productsIds
+  for (var value = 1; value <= 100; value++) {
+    productIds.push(`${value}`);
+  }
+
+  console.log(productIds)
+
+  /* returns a random number between 0 and given 'num' */
+  const random = (num) => Math.floor((Math.random() * num) + 1);
+
+  /* Holds all of the records created */
+  sampleData = [];
+
+
+
+  productIds.forEach(id => {
+    for (let i = 0; i < random(7); i++) {
+      let data = {
+        questions: [],
+        productId: id
       }
-      question.answers.push(answer)
-    }
-    data.questions.push(question)
-    sampleData.push(data);
-  }
-})
 
-QA.insertMany(sampleData, (err, result) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(`successfully added ${sampleData.length} items.`)
-  }
-})
+      let question = {
+        name: faker.internet.userName(),
+        question: faker.lorem.sentences(random(4)).slice(0, -1) + '?',
+        answers: []
+      }
+
+      for (let j = 0; j < random(4); j++) {
+        let answer = {
+          username: faker.internet.userName(),
+          answer: faker.lorem.sentences(random(9))
+        }
+        question.answers.push(answer)
+      }
+      data.questions.push(question)
+      sampleData.push(data);
+    }
+  })
+
+  QA.insertMany(sampleData, (err, result) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(`successfully added ${sampleData.length} items.`)
+    }
+  })
 
 
 
@@ -87,7 +113,7 @@ const insertOne = ({ name, productId, question, answer }, callback) => {
 // })
 
 
-  /* Todo */
+/* Todo */
 //write things to seed the database. Use Faker.
   //each question has a username
     //each question has a question
@@ -100,7 +126,7 @@ const insertOne = ({ name, productId, question, answer }, callback) => {
     //Question and Answers\
 
 
-  /* Fetch All */
+/* Fetch All */
 /*
 QA.find({ query params }, { query order }
 
