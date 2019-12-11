@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/../public'))
 app.get('/questions', (req, res) => {
   // res.status(200).send('request to the server was succesful')
     QA.find( {}, (error, results) => {
-    console.log(results)
+    console.log('SENDING --> ', results)
     res.send(results)
   })
 

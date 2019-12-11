@@ -1,31 +1,94 @@
-//write things to seed the database. Use Faker.
-  //each question has a username
-    //each question has a question
-
-//Random Q&A on the page first.
-// One question: main answer > many answers
-
-//divided into different components if I want
-  //Post (outer container)
-    //Question and Answers\
-
-  const mongoose = require('mongoose')
 
 const QA = require('./QASchema.js');
-
-const sampleData = {
-  question: 'Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum?',
-  answer: 'A first-century BCE text by Cicero , with words altered, added, and removed to make it nonsensical, improper Latin . Versions of the lorem ipsum text have been used in typesetting at least since the 1960s, when it was popularized by advertisements for Letraset transfer sheets. Lorem ipsum was introduced to the digital world in the mid-1980s when Aldus employed it in graphic and word-processing templates for its desktop publishing program PageMaker',
-  name:'Eivin',
-  // productId: 'BES870XL'
-  productId: '0'
-}
-
-// db.productQA.insertOne(sampleData);
-
-// db.productQA.find( {} )
+const faker = require('faker');
+console.log('SEED SCRIPT!!');
 
 
+/* Delete all entries if they exist */
+
+  const deleteAll = () => {
+    QA.deleteMany({}, (err) => {
+      err ? console.error(err) :
+        console.log('Successfully removed all records');
+    });
+  }
+deleteAll()
+
+
+
+
+
+  // const counter = 0;
+
+  // function incrementCount(){
+  //   counter++
+  // }
+
+  // console.log(counter);
+  // incrementCount();
+  // console.log(counter);
+
+
+
+  const productIds = [
+    'BES870XL',
+    'IVFWCT242DBWH',
+    'TOB-135N'
+  ]
+
+  //! Push numbers into productsIds
+  for (var value = 1; value <= 100; value++) {
+    productIds.push(`${value}`);
+  }
+
+  console.log(productIds)
+
+  /* returns a random number between 0 and given 'num' */
+  const random = (num) => Math.floor((Math.random() * num) + 1);
+
+  /* Holds all of the records created */
+  sampleData = [];
+
+
+
+  productIds.forEach(id => {
+    for (let i = 0; i < random(7); i++) {
+      let data = {
+        questions: [],
+        productId: id
+      }
+
+      let question = {
+        name: faker.internet.userName(),
+        question: faker.lorem.sentences(random(4)).slice(0, -1) + '?',
+        answers: []
+      }
+
+      for (let j = 0; j < random(4); j++) {
+        let answer = {
+          username: faker.internet.userName(),
+          answer: faker.lorem.sentences(random(9))
+        }
+        question.answers.push(answer)
+      }
+      data.questions.push(question)
+      sampleData.push(data);
+    }
+  })
+
+  QA.insertMany(sampleData, (err, result) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(`successfully added ${sampleData.length} items.`)
+    }
+  })
+
+
+
+
+
+/*
 //for insertOne, refer to: https://flaviocopes.com/node-mongodb/
 
 const insertOne = ({ name, productId, question, answer }, callback) => {
@@ -38,23 +101,44 @@ const insertOne = ({ name, productId, question, answer }, callback) => {
 
 }
 
+*/
+
+
+
+
+/* Insert a single record (row/document) into database */
+// insertOne(sampleData, (err, result) => {
+//   err ? console.error(err) :
+//     console.log(result);
+// })
+
+
+/* Todo */
+//write things to seed the database. Use Faker.
+  //each question has a username
+    //each question has a question
+
+//Random Q&A on the page first.
+// One question: main answer > many answers
+
+//divided into different components if I want
+  //Post (outer container)
+    //Question and Answers\
+
+
+/* Fetch All */
+/*
+QA.find({ query params }, { query order }
+
 const fetchAll = (callback) => {
-  QA.find({/* query params */}, {/* query order */}, function (err, data) {
+  QA.find({}, {}, function (err, data) {
     console.log('first')
     err ? callback(err) :
       callback(null, data)
   })
 }
 
-// Delete all entries
-const deleteAll = (callback) => {
-  QA.deleteMany({}, (err) => {
-    err ? console.error(err) :
-      console.log('Successfully removed all records');
-  });
-}
 
-/*
 fetchAll((err, data) => {
   err ? console.error(err) :
     data.forEach((item, i) => {
@@ -65,14 +149,3 @@ fetchAll((err, data) => {
     })
 })
 */
-/*
-insertOne(sampleData, (err, result) => {
-  err ? console.error(err) :
-    console.log(result);
-})
-
-*/
-
-// module.exports = sampleData;
-
-module.exports = seed
