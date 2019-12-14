@@ -72,6 +72,7 @@ const insertData = (sampleData) => {
 /* STEP 5 -- invoke as callback */
 
 const seed = () => {
+  // wait for deleteAll to finish before feeding data to database
   deleteAll(err => {
     if(err) {
       console.error(err);
@@ -82,94 +83,7 @@ const seed = () => {
     }
   })
 }
+
+
+/* Run (invoke) the Main/(seed) function */
 seed();
-
-//! Push numbers into productsIds
-
-// const productIds = generateProductIds();
-// console.log(productIds)
-
-
-  // const counter = 0;
-
-  // function incrementCount(){
-  //   counter++
-  // }
-
-  // console.log(counter);
-  // incrementCount();
-  // console.log(counter);
-
-
-
-//   //?
-// const insertProducts = function() {
-//   data.create(productIds)
-//     .then(() => db.disconnect());
-// };
-// insertProducts();
-
-//? ^^^^^^
-
-
-/*
-//for insertOne, refer to: https://flaviocopes.com/node-mongodb/
-
-const insertOne = ({ name, productId, question, answer }, callback) => {
-  // create a new record with given data
-  var qa = new QA({ name, productId, ['posts']: { question, answer } });
-  qa.save((err, result) => {
-    err ? callback(err) :
-      callback(null, result);
-  });
-
-}
-
-*/
-
-
-
-
-/* Insert a single record (row/document) into database */
-// insertOne(sampleData, (err, result) => {
-//   err ? console.error(err) :
-//     console.log(result);
-// })
-
-
-/* Todo */
-//write things to seed the database. Use Faker.
-  //each question has a username
-    //each question has a question
-
-//Random Q&A on the page first.
-// One question: main answer > many answers
-
-//divided into different components if I want
-  //Post (outer container)
-    //Question and Answers\
-
-
-/* Fetch All */
-/*
-QA.find({ query params }, { query order }
-
-const fetchAll = (callback) => {
-  QA.find({}, {}, function (err, data) {
-    console.log('first')
-    err ? callback(err) :
-      callback(null, data)
-  })
-}
-
-
-fetchAll((err, data) => {
-  err ? console.error(err) :
-    data.forEach((item, i) => {
-      console.log(`
-      Entry: ${i+1}
-      Item: ${item}
-      `)
-    })
-})
-*/
