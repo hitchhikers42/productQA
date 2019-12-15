@@ -4,6 +4,7 @@ const AnswerStyle =styled.div`
   margin: 10px;
   margin-left: 30px;
   padding: 10px;
+  background-color: rgb(242, 242, 242);
 `
 const UserStyle = styled.div`
   margin-top:5px;

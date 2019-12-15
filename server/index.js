@@ -13,18 +13,49 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../public'))
 
+//generate productIds from 1 - 100.
+const generateProductIds = () => {
+  let productIds = [];
+
+  for (var value = 1; value <= 100; value++) {
+    productIds.push(`${value}`);
+  }
+
+  return productIds;
+}
+
+
+//
+/* returns a random number between 0 and given 'num' */
+const random = (num) =>
+  Math.floor((Math.random() * num) + 1);
+
+const randomNumber = random(100)
+
+// console.log(randomNumber)
+
 // Send a GET request using Express
 
-app.get('/questions', (req, res) => {
+
+app.get('/questions/:productId', (req, res) => {
+const { productId } = req.params
   // res.status(200).send('request to the server was succesful')
-    QA.find( {}, (error, results) => {
+    QA.find( { productId: productId.toString() }, (error, results) => {
     console.log('SENDING --> ', results)
+    // res.send(req.params)
+    console.log(error)
     res.send(results)
+
   })
+
+  // app.get('/users/:userId/books/:bookId', function (req, res) {
+  //   res.send(req.params)
+  // })
 
 })
 
-
+// named john and at least 18
+// MyModel.find({ name: 'john', age: { $gte: 18 }});
 
 
 app.listen(port, () => {
